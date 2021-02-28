@@ -1,4 +1,1 @@
-export class APP{
-
-    
-}
+console.log('saaaa');
