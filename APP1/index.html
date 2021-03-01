@@ -1,18 +1,53 @@
-<!DOCTYPE html>
+
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Welcome</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<body>
-    <div class="container">
-        <h1 class="header">APP1</h1>
+    <head lang="en">
+        <meta charset="UTF-8">
+  
+        <link rel="stylesheet" href="/css/united.bootstrap.min.css">
+        <title>ANIMALS</title>
         
-    </div>
-   <script src="app.js"></script>
-</body>
-</html>
+    </head>
+    
+    <body>
+    
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Animals</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="form-horizontal" id="nameform">
+            <div class="form-group">
+                <label for="playername" class="col-sm-2 control-label">Animal Name</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="Animal" size="20" placeholder="Animal" />
+                </div>
+            </div>
+            
+            
+    
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-primary" id="showanimal">Show Animal</button>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-horizontal" id="game"></div>
+        
+        <div class="col-sm-offset-2 col-sm-10" id="scores">
+            <h2>Scoreboard</h2>
+            <h4 id="postedScore">No scores yet</h4>
+        </div>
+    
+        <div class="col-sm-offset-2 col-sm-10" id="messages"></div>
+        
+        <!-- add script tags here -->
+        <script src="app.js"></script>
+    
+    </body>
+    </html>
+    
