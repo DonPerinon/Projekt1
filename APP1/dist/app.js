@@ -1,9 +1,12 @@
-"use strict";
 var _a;
+import { asyncFunction } from './index.js';
+console.log("sdaaa");
 function GetAnimal() {
     const Animal = GetInputValue("Animal");
     PostAnimal(Animal);
+    asyncFunction();
 }
+;
 function GetInputValue(elementID) {
     const inputElement = document.getElementById(elementID);
     if (inputElement.value === '') {
@@ -13,6 +16,7 @@ function GetInputValue(elementID) {
         return inputElement.value;
     }
 }
+;
 function PostAnimal(Animal = "test", Image) {
     const elementAnimal = document.getElementById("postedAnimal");
     elementAnimal.innerText = `Selected anmal is ${Animal}`;
