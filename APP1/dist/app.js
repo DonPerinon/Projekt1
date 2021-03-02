@@ -1,12 +1,21 @@
 var _a;
-import { asyncFunction } from './index.js';
 console.log("sdaaa");
 function GetAnimal() {
     const Animal = GetInputValue("Animal");
     PostAnimal(Animal);
-    asyncFunction();
 }
 ;
+/*async function asyncFunction() {
+   let conn;
+   try {
+     conn = await db.getConnection();
+     const rows = await conn.query("SELECT Name from Animal;");
+     console.log(rows); //[ {val: 1}, meta: ...
+   } catch (err) {
+     throw err;
+   } finally {
+     if (conn) return conn.end();
+   } };*/
 function GetInputValue(elementID) {
     const inputElement = document.getElementById(elementID);
     if (inputElement.value === '') {
@@ -23,4 +32,5 @@ function PostAnimal(Animal = "test", Image) {
 }
 ;
 (_a = document.getElementById('showanimal')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', GetAnimal);
+export {};
 //# sourceMappingURL=app.js.map

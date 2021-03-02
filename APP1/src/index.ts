@@ -1,10 +1,15 @@
-
-import path from 'path';
-import { fileURLToPath } from 'url';
+/// <reference path="../node_modules/@types/node/path.d.ts"/>
+/// <reference path="../node_modules/@types/node/url.d.ts"/>
+/// <reference path="../node_modules/@types/express/index.d.ts"/>
+/// <reference path="../node_modules/mariadb/types/"/>
+import path from 'node:path' ;
+import { fileURLToPath, pathToFileURL } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import mariadb from 'mariadb';
 import express from 'express';
+import { request } from 'http';
+
 const app= express();
  const db = mariadb.createPool({
    host:'localhost',

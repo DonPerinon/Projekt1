@@ -1,4 +1,5 @@
 import {asyncFunction} from './index.js';
+
 console.log("sdaaa");
 function GetAnimal():void{
  const Animal = GetInputValue("Animal");
