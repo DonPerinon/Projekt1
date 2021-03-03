@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <% include('partials/partials.ejs') %>
+    <% include('partials/partials') %>
     <div class="container">
         <div id="app">
-            <div class="row" id="Animal">
+            <div class="row" id="animalList">
                 <h3>Animal list</h3>
-                <table v-if="hasAnimals">
+                <table v-if="hazAnimals">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -25,14 +25,14 @@
                     <tbody>
                         <tr v-for="animal in animals">
                             <td>{{animal.Name}}</td>
-                            <td><img src="{{animal.Image}}" alt="" border=3 height=100 width=100></img></td>
+                            <td>{{animal.Image}}</td>
                             <td>
                                 <button id="guitarDelete" @click="confirmAnimalDeleted(animal.id)" class="btn-small"><i class="material-icons right">delete</i>Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <p v-if="noAnimals>No Animals yet!</p>
+                <p v-if="noAnimals">No Animals yet!</p>
             </div>
         </div>
     </div>

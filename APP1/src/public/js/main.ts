@@ -6,11 +6,11 @@ import Vue from "vue";
 new Vue( {
    
     computed: {
-    hasAnimals(): boolean {
+        hazAnimals(): boolean {
       
             return this.isLoading === false && this.animals.length > 0;
         },
-     noAnimals(): boolean {
+        noAnimals(): boolean {
          
             return this.isLoading === false && this.animals.length === 0;
         
