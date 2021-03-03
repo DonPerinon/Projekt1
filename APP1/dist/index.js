@@ -1,3 +1,23 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,34 +27,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
-/// <reference path="../node_modules/@types/node/path.d.ts"/>
-/// <reference path="../node_modules/@types/node/url.d.ts"/>
-/// <reference path="../node_modules/@types/express/index.d.ts"/>
-/// <reference path="../node_modules/mariadb/types/index.d.ts"/>
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-import express from 'express';
-const app = express();
-app.listen(3000, () => console.log('Express server running at http://127.0.0.1:3000'));
-app.get('/', function (request, response) {
-    response.sendFile(path.join(process.cwd(), 'index.html'));
-});
-app.use('/src', express.static(path.join(process.cwd(), "src")));
-app.use('/dist', express.static(path.join(process.cwd(), "dist")));
-app.use('/css', express.static(path.join(process.cwd(), "css")));
-app.use('/img', express.static(path.join(process.cwd(), "IMG")));
-import mariadb from 'mariadb';
-console.log("sdaaa");
-function GetAnimal() {
-    const Animal = GetInputValue("Animal");
-    PostAnimal(Animal);
-    asyncFunction();
-}
-;
-const db = mariadb.createPool({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.asyncFunction = exports.db = void 0;
+const shell = __importStar(require("shelljs"));
+const routes = __importStar(require("./routes"));
+shell.cp("-R", "src/views", "dist/");
+// const require = createRequire(import.meta.url);
+const path_1 = __importDefault(require("path"));
+// import mariadb from'mariadb';
+const mariadb_1 = __importDefault(require("mariadb"));
+// import express from 'express';
+// import express from '../node_modules/@types/express/';
+const express_1 = __importDefault(require("express"));
+const app = express_1.default();
+exports.db = mariadb_1.default.createPool({
     host: 'localhost',
     port: 3385,
     password: 'mypass',
@@ -46,9 +55,9 @@ function asyncFunction() {
     return __awaiter(this, void 0, void 0, function* () {
         let conn;
         try {
-            conn = yield db.getConnection();
+            conn = yield exports.db.getConnection();
             const rows = yield conn.query("SELECT Name from Animal;");
-            console.log(rows); //[ {val: 1}, meta: ... 
+            console.log(rows); // [ {val: 1}, meta: ...
         }
         catch (err) {
             throw err;
@@ -59,21 +68,16 @@ function asyncFunction() {
         }
     });
 }
+exports.asyncFunction = asyncFunction;
 ;
-function GetInputValue(elementID) {
-    const inputElement = document.getElementById(elementID);
-    if (inputElement.value === '') {
-        return undefined;
-    }
-    else {
-        return inputElement.value;
-    }
-}
-;
-function PostAnimal(Animal = "test", Image) {
-    const elementAnimal = document.getElementById("postedAnimal");
-    elementAnimal.innerText = `Selected anmal is ${Animal}`;
-}
-;
-(_a = document.getElementById('showanimal')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', GetAnimal);
+app.listen(3000, () => { console.log('Express server running at http://127.0.0.1:3000'); });
+app.set("views", path_1.default.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express_1.default.json());
+app.get('/', function (request, response) {
+    response.render("index");
+});
+// Routes registerd
+routes.register(app);
+app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 //# sourceMappingURL=index.js.map
