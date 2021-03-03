@@ -6,14 +6,12 @@ import Vue from "vue";
 new Vue( {
    
     computed: {
-    hazGuitars(): boolean {
-        console.log(this.animals);
-        console.log(this.isLoading);
+    hasAnimals(): boolean {
+      
             return this.isLoading === false && this.animals.length > 0;
         },
-     noGuitars(): boolean {
-            console.log(this.animals);
-            console.log(this.isLoading);
+     noAnimals(): boolean {
+         
             return this.isLoading === false && this.animals.length === 0;
         
         }
