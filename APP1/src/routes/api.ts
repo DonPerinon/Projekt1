@@ -5,8 +5,8 @@ import * as mariadb from 'mariadb';
   export const register = ( app: express.Application ) => {
 
     const db = mariadb.createPool({
-      host:'localhost',
-      port:3385,
+      host:'db',
+      port:3306,
       password:'mypass',
       user:'root',
       database:'app_db',
@@ -18,7 +18,7 @@ import * as mariadb from 'mariadb';
 
      conn = await db.getConnection();
 
-     const rows = await conn.query("SELECT Name from Animal");
+     const rows = await conn.query("SELECT * from Animal");
 
     return res.json(rows);
      } catch (err) {
