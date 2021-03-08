@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cars Inventory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <% include('partials/partials.ejs') %>
+    <div class="container">
+        <div id="app">
+            <div class="row" id="Car">
+                <h3>Cars list</h3>
+                <table v-if="hasCars">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="car in cars">
+                            <td>{{car.car_name}}</td>
+                            <td></td>
+                            <td>
+                                <button id="carDelete" @click="confirmcarDeleted(car.id)" class="btn-small"><i class="material-icons right">delete</i>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p v-if="noCars">No Cars yet!</p>
+            </div>
+        </div>
+    </div>
+            <script src="js/carMain.js"></script>
+</body>
+</html>

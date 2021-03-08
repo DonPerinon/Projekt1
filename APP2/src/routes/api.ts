@@ -12,13 +12,13 @@ import * as mariadb from 'mariadb';
       database:'app_db',
       connectionLimit: 5
     });
-  app.get(`/api/animal/all`,async ( req: any, res ) => {
+  app.get(`/api/car/all`,async ( req: any, res ) => {
     let conn;
    try {
 
      conn = await db.getConnection();
 
-     const rows = await conn.query("SELECT Name from Animal");
+     const rows = await conn.query("SELECT car_name from Car");
     console.log(rows);
     return res.json(rows);
      } catch (err) {

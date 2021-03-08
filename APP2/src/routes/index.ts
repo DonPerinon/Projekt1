@@ -8,8 +8,8 @@ export const register = ( app: express.Application ) => {
     app.get( "/", ( req: any, res ) => {
         res.render( "index" );
     } );
-    app.get( "/animal", ( req: any, res ) => {
-        res.render( "animals" );
+    app.get( "/cars", ( req: any, res ) => {
+        res.render( "cars" );
     } );
 
 

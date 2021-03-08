@@ -21,7 +21,7 @@ const app= express();
 
 export const db = mariadb.createPool({
    host:'localhost',
-   port:3385,
+   port:3306,
    password:'mypass',
    user:'root',
    database:'app_db',
