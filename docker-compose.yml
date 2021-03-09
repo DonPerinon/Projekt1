@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mariadb
+    volumes: 
+    - /mnt/d/IPEX/Vol:/var/lib/mysql
+    environment: 
+     MYSQL_ROOT_PASSWORD: mypass
+  ngrok1:
+    build: ./ngrok
+    environment: 
+      NGROK_APP: app1:3000
+    volumes:
+    - ./enendpoints.txt:/tmp/endpoints
+  ngrok2:
+    build: ./ngrok
+    environment: 
+      NGROK_APP: app2:3000
+    volumes:
+    - ./enendpoints.txt:/tmp/endpoints
+    
+  app1:
+    build: ./APP1/
+  app2:
+    build: ./APP2/
+  
