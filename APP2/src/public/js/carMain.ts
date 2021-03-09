@@ -48,7 +48,7 @@ new Vue( {
         
         loadAnimals() {
             axios
-                .get( "/api/car/all" )
+                .get( "/api/cars/all" )
                 .then( ( res: any ) => {
                     
                     this.isLoading = false;

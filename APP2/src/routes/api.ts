@@ -12,7 +12,7 @@ import * as mariadb from 'mariadb';
       database:'app_db',
       connectionLimit: 5
     });
-  app.get(`/api/car/all`,async ( req: any, res ) => {
+  app.get(`/api/cars/all`,async ( req: any, res ) => {
     let conn;
    try {
 
