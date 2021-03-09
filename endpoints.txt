@@ -1,5 +1,3 @@
 endpoints:
-https://913d007f5f90.ngrok.io
-http://913d007f5f90.ngrok.io
-https://d3b9c43cd100.ngrok.io
-http://d3b9c43cd100.ngrok.io
+- https://b7473a82ad1e.ngrok.io
+- https://bdc67c46d709.ngrok.io
