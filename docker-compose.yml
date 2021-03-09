@@ -23,7 +23,7 @@ services:
     volumes:
     - ./endpoints.txt:/tmp/endpoints
   ansible:
-    build: ./ansible
+    build: ./ansible/
     volumes:
     - ./endpoints.txt:/tmp/endpoints
   app1:
