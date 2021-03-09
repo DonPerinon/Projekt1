@@ -18,7 +18,7 @@ import * as mariadb from 'mariadb';
 
      conn = await db.getConnection();
 
-     const rows = await conn.query("SELECT * from Animal");
+     const rows = await conn.query("SELECT Name from Animal");
 
     return res.json(rows);
      } catch (err) {

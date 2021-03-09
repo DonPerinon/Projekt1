@@ -1,5 +1,5 @@
 endpoints:
-http://1476f5a34353.ngrok.io
-https://1476f5a34353.ngrok.io
-http://734e19990568.ngrok.io
-https://734e19990568.ngrok.io
+https://913d007f5f90.ngrok.io
+http://913d007f5f90.ngrok.io
+https://d3b9c43cd100.ngrok.io
+http://d3b9c43cd100.ngrok.io

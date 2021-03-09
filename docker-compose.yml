@@ -1,4 +1,9 @@
 services:
+  remover:
+    image: busybox
+    command: sh -c "echo \"endpoints:\" > /tmp/endpoints"
+    volumes: 
+    - ./endpoints.txt:/tmp/endpoints
   db:
     image: mariadb
     volumes: 
@@ -10,13 +15,13 @@ services:
     environment: 
       NGROK_APP: app1:3000
     volumes:
-    - ./enendpoints.txt:/tmp/endpoints
+    - ./endpoints.txt:/tmp/endpoints
   ngrok2:
     build: ./ngrok
     environment: 
       NGROK_APP: app2:3000
     volumes:
-    - ./enendpoints.txt:/tmp/endpoints
+    - ./endpoints.txt:/tmp/endpoints
     
   app1:
     build: ./APP1/
