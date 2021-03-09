@@ -22,7 +22,10 @@ services:
       NGROK_APP: app2:3000
     volumes:
     - ./endpoints.txt:/tmp/endpoints
-    
+  ansible:
+    build: ./ansible
+    volumes:
+    - ./endpoints.txt:/tmp/endpoints
   app1:
     build: ./APP1/
   app2:
