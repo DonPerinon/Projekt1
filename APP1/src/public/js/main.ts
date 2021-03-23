@@ -52,7 +52,6 @@ new Vue( {
                 .then( ( res: any ) => {
                     
                     this.isLoading = false;
-                    console.log(res.data)
                     this.animals = res.data;
 
                    
@@ -64,7 +63,6 @@ new Vue( {
         }
     },
     mounted() {
-        console.log(this.animals)
         return this.loadAnimals();
      
     }

@@ -4,10 +4,10 @@ var Keycloak = require('keycloak-connect');
 let _keycloak;
 
 var keycloakConfig = {
-    clientId: 'nodejs-microservice',
+    clientId: 'animalapp',
     bearerOnly: true,
-    serverUrl: 'http://localhost:8080/auth',
-    realm: 'Demo-Realm',
+    serverUrl: 'http://keycloak:8080/auth',
+    realm: 'hobitgap',
     credentials: {
         secret: '62c99f7c-da55-48fb-ae4e-a27f132546b7'
     }
