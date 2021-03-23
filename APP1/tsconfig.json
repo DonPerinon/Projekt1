@@ -15,7 +15,8 @@
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "tools/keycloak.ts"
         ] ,
     "exclude": [
         "src/public"
