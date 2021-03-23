@@ -7,9 +7,17 @@ services:
   db:
     image: mariadb
     volumes: 
-    - /mnt/d/IPEX/Vol:/var/lib/mysql
+    - ./Vol:/var/lib/mysql
     environment: 
      MYSQL_ROOT_PASSWORD: mypass
+  keycloak:
+    image: quay.io/keycloak/keycloak:12.0.4
+    ports: 
+      - "8080:8080"
+      - "9990:9990"
+    environment: 
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
   ngrok1:
     build: ./ngrok
     environment: 

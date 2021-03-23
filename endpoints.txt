@@ -1,3 +1,3 @@
 endpoints:
-- https://7dfadd2c08e3.ngrok.io
-- https://3c6a89dd34be.ngrok.io
+- https://6fc94dfbd58c.ngrok.io
+- https://cddc8e897285.ngrok.io
