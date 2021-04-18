@@ -1,27 +1,21 @@
 let session = require('express-session');
-let Keycloak = require('keycloak-connect');
+let Keycloak = require('keycloak-js');
 
-let _keycloak;
-
-let keycloakConfig = {
-    clientId: 'animalapp',
-    bearerOnly: true,
-    serverUrl: 'http://keycloak:8080/auth',
-    realm: 'hobitgap',
-    credentials: {
-        secret: '62c99f7c-da55-48fb-ae4e-a27f132546b7'
-    }
-};
+var keycloak = new Keycloak({
+    url: 'http://keycloak-server/auth',
+    realm: 'myrealm',
+    clientId: 'myapp'
+});
 
 function initKeycloak() {
-    if (_keycloak) {
+    if (keycloak) {
         console.warn("Trying to init Keycloak again!");
-        return _keycloak;
+        return keycloak;
     }
     else {
         console.log("Initializing Keycloak...");
         const memoryStore = new session.MemoryStore();
-        _keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
+        _keycloak = new Keycloak({ store: memoryStore }, keycloak);
         return _keycloak;
     }
 }
@@ -33,7 +27,4 @@ function getKeycloak() {
     return _keycloak;
 }
 
-module.exports = {
-    initKeycloak,
-    getKeycloak
-};
+initKeycloak()

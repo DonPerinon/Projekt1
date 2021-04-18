@@ -12,6 +12,5 @@ export const register = (app: express.Application) => {
         res.render("animals");
     });
 
-
     api.register(app);
 };

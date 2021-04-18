@@ -18,7 +18,7 @@ export const register = (app: express.Application) => {
 
       conn = await db.getConnection();
 
-      const rows = await conn.query("SELECT Name from Animal");
+      const rows = await conn.query("SELECT name from Animal");
 
       return res.json(rows);
     } catch (err) {

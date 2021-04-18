@@ -19,7 +19,6 @@ new Vue( {
     data() {
         return {
             Name:"",
-            Image:Image,
             animals:[],
             isLoading: true
             //text:""
@@ -53,6 +52,7 @@ new Vue( {
                     
                     this.isLoading = false;
                     this.animals = res.data;
+                    console.log(this.animals)
 
                    
                 } )

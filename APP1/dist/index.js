@@ -25,19 +25,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const shell = __importStar(require("shelljs"));
 const routes = __importStar(require("./routes"));
 shell.cp("-R", "src/views", "dist/");
-// const require = createRequire(import.meta.url);
 const path_1 = __importDefault(require("path"));
-const { initKeycloak, getKeycloak } = require('../tools/keycloak.ts');
-// import express from 'express';
-// import express from '../node_modules/@types/express/';
+const Keycloak = require('keycloak-connect');
+const session = require('express-session');
 const express_1 = __importDefault(require("express"));
+require('dotenv').config({ path: path_1.default.resolve(__dirname, '../.env') });
 const app = express_1.default();
-initKeycloak();
+// app.use(keycloak.middleware())
 app.listen(3000, () => { console.log('Express server running at http://127.0.0.1:3000'); });
 app.set("views", path_1.default.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express_1.default.json());
-app.get('/', function (request, response) {
+app.get('/', (request, response) => {
     response.render("index");
 });
 // Routes registerd
