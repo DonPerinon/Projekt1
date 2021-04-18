@@ -5,11 +5,30 @@ services:
     volumes: 
     - ./endpoints.txt:/tmp/endpoints
   db:
-    image: mariadb
+    image: mariadb:10.5.3-focal
     volumes: 
-    - ./Vol:/var/lib/mysql
+    - ./DockerVol/dbVol:/var/lib/mysql
+    - ./DockerVol/my1.cnf:/etc/my.cnf
     environment: 
-     MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_ROOT_PASSWORD: mypass
+  db2:
+   image: mariadb:10.5.3-focal
+   volumes: 
+    - ./DockerVol/dbVol2:/var/lib/mysql
+    - ./DockerVol/my2.cnf:/etc/my.cnf
+   environment: 
+      MYSQL_ROOT_PASSWORD: mypass    
+  dbkc:
+    image: mariadb:10.5.3-focal 
+    volumes: 
+    - ./DockerVol/Keycloak:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: mypass
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+    healthcheck:
+     test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD  
   keycloak:
     image: quay.io/keycloak/keycloak:12.0.4
     ports: 
@@ -18,8 +37,16 @@ services:
     environment: 
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: mariadb
+      DB_ADDR: dbkc
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+
     volumes: 
-    - ./DockerVol/Keycloak:/var/lib/keycloak/data
+      - ./DockerVol/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+    depends_on:
+      - dbkc
   ngrok1:
     build: ./ngrok
     environment: 
@@ -40,4 +67,3 @@ services:
     build: ./APP1/
   app2:
     build: ./APP2/
-  
