@@ -2,6 +2,8 @@
 import { createRequire } from 'module';
 import * as shell from "shelljs";
 import * as routes from "./routes";
+const Keycloak = require ('keycloak-connect')
+const session = require('express-session');
 shell.cp( "-R", "src/views", "dist/" );
 // const require = createRequire(import.meta.url);
 import path from 'path'
@@ -19,32 +21,27 @@ import express from 'express';
 const app= express();
 
 
-export const db = mariadb.createPool({
-   host:'localhost',
-   port:3306,
-   password:'mypass',
-   user:'root',
-   database:'app_db',
-   connectionLimit: 5
- });
 
-export async function asyncFunction() {
-   let conn;
-   try {
-     conn = await db.getConnection();
-     const rows = await conn.query("SELECT Name from Animal;");
-     console.log(rows); // [ {val: 1}, meta: ...
-   } catch (err) {
-     throw err;
-   } finally {
-     if (conn) return conn.end();
-   } };
+const memoryStore = new session.MemoryStore();
 
-app.listen(3000,()=>{console.log('Express server running at http://127.0.0.1:3000')});
+// session
+app.use(session({
+secret:'thisShouldBeLongAndSecret',
+resave: false,
+saveUninitialized: true,
+store: memoryStore
+}));
+
+const keycloak = new Keycloak({ store: memoryStore });
+ app.use(keycloak.middleware({logout: '/logoff'}));
+
+
+app.listen(4500,()=>{console.log('Express server running at http://127.0.0.1:3000')});
 app.set( "views", path.join( __dirname, "views" ) );
 app.set( "view engine", "ejs" );
 app.use( express.json() );
-app.get('/', function(request, response) {
+
+app.get('/',keycloak.protect(), function(request, response) {
    response.render( "index" );
   })
   // Routes registerd

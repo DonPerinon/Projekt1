@@ -11,6 +11,9 @@ export const register = ( app: express.Application ) => {
     app.get( "/cars", ( req: any, res ) => {
         res.render( "cars" );
     } );
+    app.get("/logoff", (req: any, res) => {
+        res.render("animals");
+    });
 
 
     api.register( app );

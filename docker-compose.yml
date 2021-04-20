@@ -65,5 +65,9 @@ services:
     - ./endpoints.txt:/tmp/endpoints
   app1:
     build: ./APP1/
+    ports: 
+    - 3000:3000
   app2:
     build: ./APP2/
+    ports:
+    - 4500:4500

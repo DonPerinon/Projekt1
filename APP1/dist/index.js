@@ -31,14 +31,29 @@ const session = require('express-session');
 const express_1 = __importDefault(require("express"));
 require('dotenv').config({ path: path_1.default.resolve(__dirname, '../.env') });
 const app = express_1.default();
+const memoryStore = new session.MemoryStore();
+// session
+app.use(session({
+    secret: 'thisShouldBeLongAndSecret',
+    resave: false,
+    saveUninitialized: true,
+    store: memoryStore
+}));
+const keycloak = new Keycloak({ store: memoryStore });
+app.use(keycloak.middleware({ logout: '/logoff' }));
 // app.use(keycloak.middleware())
-app.listen(3000, () => { console.log('Express server running at http://127.0.0.1:3000'); });
 app.set("views", path_1.default.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express_1.default.json());
-app.get('/', (request, response) => {
+app.get('/test', keycloak.protect(), function (req, res) {
+    res.cookie('token', 'ahoj');
+    res.render('test', { title: 'Test of the test' });
+});
+app.get('/', keycloak.protect(), (request, response) => {
     response.render("index");
 });
+app.use(keycloak.middleware({ logout: '/' }));
+app.listen(3000, () => { console.log('Express server running at http://127.0.0.1:3000'); });
 // Routes registerd
 routes.register(app);
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));

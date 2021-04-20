@@ -6,6 +6,7 @@ var keycloak = new Keycloak({
     realm: 'myrealm',
     clientId: 'myapp'
 });
+keycloak.middleware()
 
 function initKeycloak() {
     if (keycloak) {
